@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { getNativeByChain } from "helpers/networks";
 import { getCollectionsByChain } from "helpers/collections";
 import {
   useMoralis,
   useMoralisQuery,
-  useNewMoralisObject,
 } from "react-moralis";
 import { Card, Image, Tooltip, Modal, Badge, Alert, Spin } from "antd";
 import { useNFTTokenIds } from "hooks/useNFTTokenIds";
@@ -66,7 +65,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
   const { chainId, marketAddress, contractABI, walletAddress } =
     useMoralisDapp();
   const nativeName = getNativeByChain(chainId);
-  const contractABIJson = JSON.parse(contractABI);
+  const contractABIJson = contractABI;
   const { Moralis } = useMoralis();
   const queryMarketItems = useMoralisQuery("MarketItems");
   const fetchMarketItems = JSON.parse(
@@ -311,6 +310,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
                       borderRadius: "10px",
                       marginBottom: "15px",
                     }}
+                    alt={'Alt text'}
                   />
                 </Badge.Ribbon>
               </div>
@@ -331,6 +331,7 @@ function NFTTokenIds({ inputValue, setInputValue }) {
                 borderRadius: "10px",
                 marginBottom: "15px",
               }}
+              alt={'Alt text'}
             />
             <Alert
               message="This NFT is currently not for sale"
